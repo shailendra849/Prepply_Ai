@@ -9,9 +9,9 @@ app.use(express.static(path.join(__dirname, "../public")));
 app.use(express.json())
 app.use(cookieParser())
 app.use(cors({
-    origin: process.env.CLIENT_URL || "http://localhost:5173",
+    origin: "http://localhost:5173",
     credentials: true
-}));
+}))
 
 /* require all the routes here */
 const authRouter = require("./routes/auth.routes")
@@ -27,7 +27,7 @@ app.use("/api/interview", interviewRouter)
 app.use("/api/mock", mockRouter)
 
 // Serve React app for all non-API routes
-app.get("*", (req, res) => {
+app.get("/*", (req, res) => {
     res.sendFile(path.join(__dirname, "../public", "index.html"));
 });
 
