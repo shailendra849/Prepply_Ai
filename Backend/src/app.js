@@ -27,7 +27,7 @@ app.use("/api/interview", interviewRouter)
 app.use("/api/mock", mockRouter)
 
 // Serve React app for all non-API routes
-app.get("/*", (req, res) => {
+app.use((req, res) => {
     res.sendFile(path.join(__dirname, "../public", "index.html"));
 });
 
